@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026维多利亚春节联欢晚会倒计时</title>
+    <link rel="icon" href="img/lantern.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts for better typography, using Noto Serif SC for Chinese serif style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-overlay"></div>
+    <div class="paper-cut-horse"></div>
+    <div class="paper-cut-horse-right"></div>
+    <div class="container">
+        <header>
+            <div class="organizer">主办：维多利亚文化艺术协会 &nbsp;|&nbsp; 维度传媒</div>
+        </header>
+
+        <main>
+            <h1 class="main-title">2026 维多利亚春节联欢晚会</h1>
+            <p class="en-title">2026 Victoria Spring Festival Gala</p>
+            <h2 class="sub-title">金马迎春</h2>
+
+            <div class="countdown-container">
+                <div class="time-block">
+                    <span id="days" class="number">00</span>
+                    <span class="label">天</span>
+                </div>
+                <div class="separator">:</div>
+                <div class="time-block">
+                    <span id="hours" class="number">00</span>
+                    <span class="label">时</span>
+                </div>
+                <div class="separator">:</div>
+                <div class="time-block">
+                    <span id="minutes" class="number">00</span>
+                    <span class="label">分</span>
+                </div>
+                <div class="separator">:</div>
+                <div class="time-block">
+                    <span id="seconds" class="number">00</span>
+                    <span class="label">秒</span>
+                </div>
+            </div>
+
+            <div class="title-sponsor">
+                <span class="sponsor-label">冠名赞助</span>
+                <span class="sponsor-name">维多利亚律师事务所</span>
+            </div>
+        </main>
+
+        <footer>
+            <div class="nominated-sponsors-grid">
+                <div class="sponsor-item">金牌赞助A</div>
+                <div class="sponsor-item">金牌赞助B</div>
+                <div class="sponsor-item">金牌赞助C</div>
+                <div class="sponsor-item">金牌赞助D</div>
+                <div class="sponsor-item">金牌赞助E</div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Spring Festival Music Controller -->
+    <script src="assets/audio/music-controller.js"></script>
+
+    <!-- Original Countdown Script -->
+    <script src="js/script.js"></script>
+
+    <!-- Auto-start background music for countdown -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 等待页面完全加载后开始播放背景音乐
+            setTimeout(() => {
+                if (typeof musicController !== 'undefined') {
+                    // 如果距离目标时间还有不到60秒，使用快速启动
+                    const now = new Date().getTime();
+                    const targetDate = new Date('January 25, 2026 20:00:00').getTime();
+                    const distance = targetDate - now;
+
+                    if (distance > 0 && distance <= 60000) {
+                        // 最后一分钟直接播放bgm2
+                        musicController.setVolume(0.6, 2);
+                        musicController.playMusic(2);
+                    } else if (distance > 60000) {
+                        // 启动完整倒计时音乐序列
+                        musicController.startCountdownMusic();
+                    }
+                }
+            }, 2000);
+        });
+
+        // 添加用户点击页面任意位置启动音乐的友好提示
+        let musicStarted = false;
+        document.addEventListener('click', () => {
+            if (!musicStarted && typeof musicController !== 'undefined') {
+                musicController.playMusic(1);
+                musicStarted = true;
+                console.log('🎵 背景音乐已启动');
+            }
+        }, { once: true });
+    </script>
+</body>
+
+</html>

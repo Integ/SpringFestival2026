@@ -1,0 +1,328 @@
+:root {
+    --ink-black: #2c2c2c;
+    --ink-gray: #4a4a4a;
+    --festive-red: #c92f2f;
+    /* Traditional Chinese Red */
+    --paper-white: #fdfbf7;
+    /* Rice paper color */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif SC', serif;
+    background-color: var(--paper-white);
+    color: var(--ink-black);
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../img/background.png');
+    background-size: 100% 100%;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+}
+
+/* Add a subtle paper texture overlay or vignette if needed, but the image is good */
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 70%, rgba(255, 255, 255, 0.1) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    width: 90%;
+    max-width: 1600px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+header {
+    width: 100%;
+    padding-top: 2rem;
+}
+
+.organizer {
+    font-size: 2.2rem;
+    /* Increased from 1.8rem */
+    font-weight: 700;
+    color: var(--ink-gray);
+    letter-spacing: 2px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    animation: fadeIn 2s ease-out;
+}
+
+.main-title {
+    font-family: 'Ma Shan Zheng', cursive;
+    /* Calligraphy style */
+    font-size: 8rem;
+    /* Increased from 6rem */
+    margin-bottom: 1rem;
+    color: var(--festive-red);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.en-title {
+    font-size: 3.5rem;
+    /* Increased from 2.5rem */
+    color: var(--festive-red);
+    /* Gold color */
+    margin-top: -1rem;
+    /* Pull it up closer to the main title */
+    margin-bottom: 2rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-family: 'Noto Serif SC', serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.sub-title {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 5rem;
+    /* Increased from 3.5rem */
+    color: #E6B800;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* Align numbers and labels nicely */
+    gap: 2rem;
+    width: 1200px;
+    /* Increased from 1200px */
+    /* Fixed width to prevent resizing */
+    margin-bottom: 4rem;
+    padding: 3rem 5rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(5px);
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.number {
+    font-size: 10rem;
+    /* Increased from 7rem */
+    font-weight: bold;
+    line-height: 1;
+    color: var(--ink-black);
+    font-variant-numeric: tabular-nums;
+}
+
+.label {
+    font-size: 2.2rem;
+    /* Increased from 1.5rem */
+    color: var(--ink-gray);
+    margin-top: 0.5rem;
+    font-weight: normal;
+}
+
+.separator {
+    font-size: 7rem;
+    /* Increased from 5rem */
+    color: var(--festive-red);
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+    /* Visually align with numbers */
+    opacity: 0.8;
+    animation: pulse 1s infinite;
+}
+
+.title-sponsor {
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    /* Increased from 2rem */
+    color: var(--ink-black);
+}
+
+.sponsor-label {
+    display: block;
+    font-size: 1.8rem;
+    /* Increased from 1.2rem */
+    color: var(--ink-gray);
+    margin-bottom: 0.5rem;
+}
+
+.sponsor-name {
+    font-weight: 700;
+    font-size: 3.5rem;
+    /* Increased from 2.5rem */
+    color: var(--festive-red);
+    font-family: 'Ma Shan Zheng', cursive;
+}
+
+footer {
+    width: 100%;
+    padding-bottom: 1rem;
+}
+
+.nominated-sponsors-grid {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.sponsor-item {
+    font-size: 1.8rem;
+    /* Increased from 1.2rem */
+    color: var(--ink-gray);
+    font-weight: 600;
+    border-bottom: 1px solid var(--festive-red);
+    padding: 0.5rem 1rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.8;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .main-title {
+        font-size: 4rem;
+    }
+
+    .number {
+        font-size: 5rem;
+    }
+}
+
+/* Paper Cut Horse Animation */
+.paper-cut-horse {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    width: 600px;
+    height: 600px;
+    background-image: url('../img/paper_cut_horse.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 5;
+    opacity: 0.9;
+    /* Use multiply to remove white background if present in the image */
+    mix-blend-mode: multiply;
+    transform-origin: bottom center;
+    animation: gentleRock 4s ease-in-out infinite;
+}
+
+/* Right horse */
+.paper-cut-horse-right {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    width: 600px;
+    height: 600px;
+    background-image: url('../img/paper_cut_horse.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 5;
+    opacity: 0.9;
+    mix-blend-mode: multiply;
+    transform-origin: bottom center;
+    /* Flip horizontally and then apply the same rocking animation logic */
+    animation: gentleRockRight 4s ease-in-out infinite;
+}
+
+/* Right rock: Needs to account for scaleX(-1). 
+   When flipped, rotation direction flips visually too.
+*/
+@keyframes gentleRockRight {
+    0% {
+        transform: scaleX(-1) rotate(-3deg) translateY(0);
+    }
+
+    50% {
+        transform: scaleX(-1) rotate(3deg) translateY(-5px);
+    }
+
+    100% {
+        transform: scaleX(-1) rotate(-3deg) translateY(0);
+    }
+}
+
+@keyframes swing {
+    0% {
+        transform: rotate(2deg);
+    }
+
+    50% {
+        transform: rotate(-2deg);
+    }
+
+    100% {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes gentleRock {
+    0% {
+        transform: rotate(-3deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(3deg) translateY(-5px);
+    }
+
+    100% {
+        transform: rotate(-3deg) translateY(0);
+    }
+}

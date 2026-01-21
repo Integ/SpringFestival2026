@@ -1,0 +1,50 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Target date: February 15, 2026 at 7:00 PM
+    const targetDate = new Date('2026-02-15T19:00:00');
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    function updateCountdown() {
+        const now = new Date();
+        const difference = targetDate - now;
+
+        if (difference <= 0) {
+            // Event has started
+            clearInterval(timerInterval);
+            document.querySelector('.countdown-container').innerHTML = '<div class="number" style="font-size: 5rem; color: var(--festive-red);">晚会即将开始</div>';
+            return;
+        }
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minutesEl.textContent = String(minutes).padStart(2, '0');
+        secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    // Initial call to avoid delay
+    updateCountdown();
+
+    // Update every second
+    const timerInterval = setInterval(updateCountdown, 1000);
+
+    // Fullscreen toggle on double click
+    document.addEventListener('dblclick', () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => {
+                console.error(`Error attempting to enable fullscreen: ${err.message}`);
+            });
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    });
+});

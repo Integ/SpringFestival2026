@@ -1,0 +1,93 @@
+{
+  "playlist": [
+    {
+      "id": 1,
+      "title": "春节背景音乐一",
+      "artist": "用户上传",
+      "file": "bgm1.mp3",
+      "duration": "约2:45",
+      "style": "春节背景音乐",
+      "mood": "喜庆温馨",
+      "usage": "倒计时主要背景音乐",
+      "file_size": "3.9MB",
+      "bitrate": "256 kbps",
+      "sample_rate": "48 kHz"
+    },
+    {
+      "id": 2,
+      "title": "春节背景音乐二",
+      "artist": "用户上传",
+      "file": "bgm2.mp3",
+      "duration": "约2:30",
+      "style": "春节背景音乐",
+      "mood": "欢快热闹",
+      "usage": "倒计时高潮部分背景音乐",
+      "file_size": "3.4MB",
+      "bitrate": "256 kbps",
+      "sample_rate": "48 kHz"
+    },
+    {
+      "id": 3,
+      "title": "春节序曲",
+      "artist": "李焕之",
+      "file": "bgm3.mp3",
+      "duration": "4:30",
+      "style": "传统管弦乐",
+      "mood": "喜庆热烈",
+      "usage": "备选倒计时背景音乐"
+    },
+    {
+      "id": 4,
+      "title": "新年好",
+      "artist": "传统民乐",
+      "file": "bgm4.mp3",
+      "duration": "2:15",
+      "style": "传统民乐",
+      "mood": "温馨欢快",
+      "usage": "倒计时最后10秒备选"
+    },
+    {
+      "id": 5,
+      "title": "金蛇狂舞",
+      "artist": "聂耳",
+      "file": "bgm5.mp3",
+      "duration": "3:20",
+      "style": "民族管弦乐",
+      "mood": "热情奔放",
+      "usage": "倒计时高潮部分备选"
+    }
+  ],
+  "playback_settings": {
+    "background_volume": 0.4,
+    "countdown_volume": 0.6,
+    "finale_volume": 0.5,
+    "fade_in_duration": 2000,
+    "fade_out_duration": 3000
+  },
+  "countdown_segments": [
+    {
+      "time_range": "60-30秒",
+      "recommended_track": "bgm1.mp3",
+      "volume": 0.4,
+      "description": "用户上传的春节背景音乐一，温馨开场"
+    },
+    {
+      "time_range": "30-10秒",
+      "recommended_track": "bgm2.mp3",
+      "volume": 0.5,
+      "description": "用户上传的春节背景音乐二，节奏逐渐加快"
+    },
+    {
+      "time_range": "最后10秒",
+      "recommended_track": "bgm2.mp3",
+      "volume": 0.7,
+      "description": "音乐高潮部分，配合倒计时"
+    },
+    {
+      "time_range": "零点时刻",
+      "recommended_track": "bgm2.mp3",
+      "volume": 0.6,
+      "description": "达到高潮，配合烟花效果"
+    }
+  ]
+}
