@@ -41,14 +41,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentValue = element.textContent;
         
         if (currentValue !== newValue) {
-            // Add simple fade animation
-            element.style.opacity = '0.3';
+            // Remove the class first to ensure we can re-trigger it
+            element.classList.remove('flip');
             
-            // Update text
+            // Force a reflow to restart the animation if it was just removed (though unlikely with 1s interval)
+            void element.offsetWidth; 
+            
+            // Add the animation class
+            element.classList.add('flip');
+            
+            // Update text halfway through the animation (0.6s total duration, so at 0.3s)
             setTimeout(() => {
                 element.textContent = newValue;
-                element.style.opacity = '1';
-            }, 150);
+            }, 300);
+            
+            // Clean up class after animation
+            setTimeout(() => {
+                element.classList.remove('flip');
+            }, 600);
         }
     }
 
