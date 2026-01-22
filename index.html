@@ -3,7 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#fdfbf7">
     <title>2026维多利亚春节联欢晚会倒计时</title>
     <link rel="icon" href="img/lantern.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
@@ -66,7 +69,6 @@
     <!-- Modal for Organizers and Sponsors -->
     <div id="infoModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
             <div id="modalBody">
                 <!-- Content will be dynamically inserted here -->
             </div>
@@ -84,7 +86,6 @@
         // Modal functionality
         const modal = document.getElementById('infoModal');
         const modalBody = document.getElementById('modalBody');
-        const closeBtn = document.querySelector('.close-btn');
 
         // Organizer and sponsor information
         const infoData = {
@@ -205,8 +206,7 @@
             e.stopPropagation();
         }
 
-        // Close modal
-        closeBtn.addEventListener('click', closeModal);
+
 
         // Close modal when clicking on modal background or content
         window.addEventListener('click', (e) => {

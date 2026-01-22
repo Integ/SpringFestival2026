@@ -162,37 +162,53 @@ class SpringFestivalMusicController {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(44, 44, 44, 0.95);
             color: white;
             padding: 30px;
             border-radius: 15px;
             text-align: center;
             z-index: 10000;
-            max-width: 600px;
+            max-width: 90%;
+            width: 600px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            font-family: 'Noto Serif SC', serif;
+            backdrop-filter: blur(10px);
         `;
         prompt.innerHTML = `
-            <h2>🎊 2026维多利亚春节联欢晚会 - 操作指南</h2>
+            <h2 style="margin-bottom: 20px; font-size: 1.5rem;">🎊 2026维多利亚春节联欢晚会 - 操作指南</h2>
             
-            <div style="margin: 20px 0; text-align: left;">
-                <h4 style="color: #ffd700; margin-bottom: 10px;">🎵 音乐控制</h4>
+            <div style="margin: 20px 0; text-align: left; font-size: 1rem; line-height: 1.6;">
+                <h4 style="color: #ffd700; margin-bottom: 10px; font-size: 1.2rem;">🎵 音乐控制</h4>
                 <p>• 数字键 1-5: 播放不同的背景音乐</p>
                 <p>• 空格键: 播放/停止当前音乐</p>
             </div>
             
-            <div style="margin: 20px 0; text-align: left;">
-                <h4 style="color: #ffd700; margin: 15px 0 10px;">🏢 赞助商信息</h4>
+            <div style="margin: 20px 0; text-align: left; font-size: 1rem; line-height: 1.6;">
+                <h4 style="color: #ffd700; margin: 15px 0 10px; font-size: 1.2rem;">🏢 赞助商信息</h4>
                 <p>• 点击主办方/赞助商名称查看详细信息</p>
                 <p>• S键: 开始/停止自动循环展示赞助商</p>
                 <p>• ESC键: 关闭当前弹窗</p>
             </div>
             
-            <div style="margin: 20px 0; text-align: left;">
-                <h4 style="color: #ffd700; margin: 15px 0 10px;">🖥️ 显示控制</h4>
+            <div style="margin: 20px 0; text-align: left; font-size: 1rem; line-height: 1.6;">
+                <h4 style="color: #ffd700; margin: 15px 0 10px; font-size: 1.2rem;">🖥️ 显示控制</h4>
                 <p>• 双击页面空白处进入/退出全屏模式</p>
+            </div>
+            
+            <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.2); font-size: 0.9rem; opacity: 0.8;">
+                💡 提示：此弹窗将在15秒后自动消失
             </div>
         `;
         document.body.appendChild(prompt);
+        
+        // 移动设备优化
+        if (window.innerWidth <= 768) {
+            prompt.style.cssText += `
+                font-size: 14px;
+                padding: 20px;
+                margin: 20px;
+            `;
+        }
 
         // 15秒后自动消失
         setTimeout(() => {
@@ -219,9 +235,21 @@ class SpringFestivalMusicController {
 // 全局音乐控制器实例
 let musicController;
 
-// 页面加载完成后初始化
+// 初始化音乐控制器
+console.log('开始初始化音乐控制器...');
+musicController = new SpringFestivalMusicController();
+console.log('音乐控制器创建完成');
+
+// 显示操作提示
+try {
+    musicController.showUserInteractionPrompt();
+    console.log('操作提示显示成功');
+} catch (error) {
+    console.error('显示操作提示时出错:', error);
+}
+
+// 页面加载完成后添加键盘控制
 document.addEventListener('DOMContentLoaded', () => {
-    musicController = new SpringFestivalMusicController();
 
     // 添加键盘控制
     document.addEventListener('keydown', (event) => {

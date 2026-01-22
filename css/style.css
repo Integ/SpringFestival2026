@@ -63,7 +63,7 @@ header {
     font-size: 3rem;
     /* Increased from 2.2rem */
     font-weight: 700;
-    color: var(--ink-gray);
+    color: var(--ink-black);
     letter-spacing: 2px;
     text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
@@ -71,7 +71,7 @@ header {
 .organizer-btn {
     background: none;
     border: none;
-    color: var(--ink-gray);
+    color: var(--ink-black);
     font-size: inherit;
     font-weight: inherit;
     font-family: inherit;
@@ -83,12 +83,21 @@ header {
     text-decoration-style: solid;
     text-underline-offset: 3px;
     transition: all 0.3s ease;
+    padding: 10px;
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-block;
+    position: relative;
 }
 
 .organizer-btn:hover {
     color: var(--festive-red);
     text-decoration-color: var(--festive-red);
     transform: scale(1.05);
+}
+
+.organizer-btn:active {
+    transform: scale(0.98);
 }
 
 main {
@@ -222,7 +231,7 @@ main {
     display: block;
     font-size: 2.2rem;
     /* Increased from 1.8rem */
-    color: var(--ink-gray);
+    color: var(--ink-black);
     margin-bottom: 0.5rem;
 }
 
@@ -243,6 +252,11 @@ main {
     font-size: inherit;
     color: inherit;
     transition: all 0.3s ease;
+    padding: 10px;
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-block;
+    position: relative;
 }
 
 .title-sponsor-btn {
@@ -258,17 +272,24 @@ main {
 }
 
 .gold-sponsor-btn {
-    color: var(--ink-gray);
+    color: var(--ink-black);
     font-size: 2.2rem;
     font-weight: 600;
     border-bottom: 1px solid var(--festive-red);
     padding: 0.5rem 1rem;
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-block;
 }
 
 .gold-sponsor-btn:hover {
     color: var(--festive-red);
     transform: translateY(-2px);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.gold-sponsor-btn:active {
+    transform: translateY(0);
 }
 
 footer {
@@ -286,7 +307,7 @@ footer {
 .sponsor-item {
     font-size: 2.2rem;
     /* Increased from 1.8rem */
-    color: var(--ink-gray);
+    color: var(--ink-black);
     font-weight: 600;
     border-bottom: 1px solid var(--festive-red);
     padding: 0.5rem 1rem;
@@ -331,21 +352,7 @@ footer {
 }
 
 .close-btn {
-    position: absolute;
-    right: 3rem;
-    top: 3rem;
-    font-size: 3rem;
-    font-weight: bold;
-    color: var(--ink-gray);
-    cursor: pointer;
-    transition: color 0.3s ease;
-    line-height: 1;
-    z-index: 10;
     display: none;
-}
-
-.close-btn:hover {
-    color: var(--festive-red);
 }
 
 .modal h2 {
@@ -368,7 +375,7 @@ footer {
 .modal-description {
     font-size: 2.2rem;
     line-height: 1.8;
-    color: var(--ink-gray);
+    color: var(--ink-black);
     margin-bottom: 2rem;
     text-align: center;
     max-width: 800px;
@@ -557,6 +564,293 @@ footer {
     }
 }
 
+/* Tablets */
+@media (max-width: 1024px) {
+    .main-title {
+        font-size: 3.5rem;
+    }
+    
+    .en-title {
+        font-size: 3rem;
+    }
+    
+    .sub-title {
+        font-size: 4.5rem;
+    }
+    
+    .number {
+        font-size: 4rem;
+        width: 1.2em;
+    }
+    
+    .separator {
+        font-size: 4rem;
+    }
+    
+    .label {
+        font-size: 1.8rem;
+    }
+    
+    .countdown-container {
+        padding: 1.2rem 2rem;
+        gap: 1.2rem;
+    }
+    
+    .paper-cut-horse,
+    .paper-cut-horse-right {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .modal h2 {
+        font-size: 4rem;
+    }
+    
+    .modal-description {
+        font-size: 1.8rem;
+    }
+    
+    .modal-details {
+        font-size: 1.6rem;
+    }
+}
+
+/* Large Mobile */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.8rem;
+    }
+    
+    .en-title {
+        font-size: 2.4rem;
+    }
+    
+    .sub-title {
+        font-size: 3.5rem;
+    }
+    
+    .number {
+        font-size: 3rem;
+        width: 1.1em;
+    }
+    
+    .separator {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+    
+    .label {
+        font-size: 1.5rem;
+    }
+    
+    .countdown-container {
+        padding: 1rem 1.5rem;
+        gap: 1rem;
+        max-width: 95%;
+        margin-bottom: 3rem;
+    }
+    
+    .organizer {
+        font-size: 2.2rem;
+    }
+    
+    .title-sponsor {
+        font-size: 2.2rem;
+    }
+    
+    .sponsor-name {
+        font-size: 3rem;
+    }
+    
+    .paper-cut-horse,
+    .paper-cut-horse-right {
+        width: 250px;
+        height: 250px;
+        bottom: 3%;
+    }
+    
+    .modal-content {
+        padding: 2rem;
+    }
+    
+    .modal h2 {
+        font-size: 3rem;
+    }
+    
+    .modal-description {
+        font-size: 1.6rem;
+    }
+    
+    .modal-details {
+        font-size: 1.4rem;
+        padding: 1.5rem 2rem;
+    }
+    
+
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .container {
+        width: 95%;
+        height: 95vh;
+    }
+    
+    main {
+        margin-bottom: 2rem;
+    }
+    
+    .main-title {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .en-title {
+        font-size: 1.8rem;
+        margin-top: -0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .sub-title {
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .countdown-container {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.8rem;
+        max-width: 90%;
+        margin-bottom: 2rem;
+    }
+    
+    .time-block {
+        width: 100%;
+    }
+    
+    .number {
+        font-size: 2.2rem;
+        width: auto;
+    }
+    
+    .separator {
+        font-size: 2rem;
+        margin-bottom: 0;
+        transform: rotate(90deg);
+        margin: 0.5rem 0;
+    }
+    
+    .label {
+        font-size: 1.2rem;
+        margin-top: 0.5rem;
+    }
+    
+    .organizer {
+        font-size: 1.8rem;
+    }
+    
+    .title-sponsor {
+        font-size: 1.8rem;
+        margin-top: 1.5rem;
+    }
+    
+    .sponsor-name {
+        font-size: 2.2rem;
+    }
+    
+    .nominated-sponsors-grid {
+        gap: 1.5rem;
+    }
+    
+    .sponsor-item {
+        font-size: 1.6rem;
+        padding: 0.3rem 0.8rem;
+    }
+    
+    .paper-cut-horse,
+    .paper-cut-horse-right {
+        width: 150px;
+        height: 150px;
+        bottom: 2%;
+        left: 2%;
+    }
+    
+    .paper-cut-horse-right {
+        right: 2%;
+    }
+    
+    .modal-content {
+        padding: 1.5rem;
+        height: 100vh;
+        overflow-y: auto;
+    }
+    
+    .modal h2 {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .modal-image {
+        width: 95%;
+        max-height: 30vh;
+    }
+    
+    .modal-description {
+        font-size: 1.4rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+    
+    .modal-details {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        padding: 1.2rem 1.5rem;
+    }
+    
+
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+    .main-title {
+        font-size: 1.8rem;
+    }
+    
+    .en-title {
+        font-size: 1.5rem;
+    }
+    
+    .sub-title {
+        font-size: 2.2rem;
+    }
+    
+    .number {
+        font-size: 1.8rem;
+    }
+    
+    .label {
+        font-size: 1rem;
+    }
+    
+    .organizer {
+        font-size: 1.5rem;
+    }
+    
+    .sponsor-name {
+        font-size: 1.8rem;
+    }
+    
+    .paper-cut-horse,
+    .paper-cut-horse-right {
+        width: 120px;
+        height: 120px;
+    }
+}
+
 /* Paper Cut Horse Animation */
 .paper-cut-horse {
     position: absolute;
@@ -662,6 +956,148 @@ footer {
         filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
         transform: scale(1.02);
     }
+}
+
+/* Mobile-specific optimizations */
+/* Touch-friendly scrolling */
+.modal-content {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* Prevent zoom on input focus for mobile */
+input, textarea, select {
+    font-size: 16px;
+}
+
+/* Better button touch targets */
+button, .btn {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --festive-red: #ff0000;
+        --ink-black: #000000;
+        --ink-gray: #000000;
+        --paper-white: #ffffff;
+    }
+    
+    .countdown-container {
+        border: 2px solid var(--festive-red);
+    }
+    
+    .modal-content {
+        border: 2px solid var(--ink-black);
+    }
+}
+
+
+
+/* Mobile viewport height fixes */
+@media (max-height: 600px) and (orientation: landscape) {
+    .container {
+        height: auto;
+        min-height: 100vh;
+        padding: 1rem 0;
+    }
+    
+    main {
+        margin-bottom: 1rem;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .sub-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .countdown-container {
+        margin-bottom: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .paper-cut-horse,
+    .paper-cut-horse-right {
+        display: none;
+    }
+}
+
+/* Mobile image optimizations */
+@media (max-width: 768px) {
+    .modal-image {
+        content-visibility: auto;
+        contain-intrinsic-size: 800px 600px;
+    }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 480px) {
+    /* Reduce animations on low-end devices */
+    .paper-cut-horse,
+    .paper-cut-horse-right {
+        animation-duration: 6s;
+    }
+    
+    /* Optimize background loading */
+    body {
+        background-image: url('../img/background.png');
+        background-attachment: scroll;
+    }
+    
+    /* Disable hover effects on touch devices */
+    @media (hover: none) {
+        .organizer-btn:hover,
+        .sponsor-btn:hover,
+        .title-sponsor-btn:hover,
+        .gold-sponsor-btn:hover {
+            transform: none;
+        }
+    }
+}
+
+/* Responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Loading states */
+.modal-image {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.modal-image[src] {
+    animation: none;
+    background: none;
 }
 
 
