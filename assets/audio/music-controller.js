@@ -12,19 +12,17 @@ class SpringFestivalMusicController {
         this.bgm5 = new Audio('assets/audio/bgm5.mp3');
         this.currentMusic = null;
         this.isPlaying = false;
-        this.fadeInterval = null;
-        this.crossfadeInterval = null;
 
-        // 音频设置
+        // 音频设置 - 统一使用80%音量
         this.bgm1.loop = true;
         this.bgm2.loop = true;
         this.bgm3.loop = true;
         this.bgm4.loop = true;
         this.bgm5.loop = true;
-        this.bgm1.volume = 0.4;
-        this.bgm2.volume = 0.5;
-        this.bgm3.volume = 0.6;
-        this.bgm4.volume = 0.7;
+        this.bgm1.volume = 0.8;
+        this.bgm2.volume = 0.8;
+        this.bgm3.volume = 1.0;
+        this.bgm4.volume = 0.8;
         this.bgm5.volume = 0.8;
 
         this.init();
@@ -135,16 +133,6 @@ class SpringFestivalMusicController {
 
     // 停止播放
     stopMusic() {
-        // 清除所有定时器
-        if (this.fadeInterval) {
-            clearInterval(this.fadeInterval);
-            this.fadeInterval = null;
-        }
-        if (this.crossfadeInterval) {
-            clearInterval(this.crossfadeInterval);
-            this.crossfadeInterval = null;
-        }
-
         // 停止所有音频
         [this.bgm1, this.bgm2, this.bgm3, this.bgm4, this.bgm5].forEach(bgm => {
             bgm.pause();
@@ -156,143 +144,15 @@ class SpringFestivalMusicController {
         console.log('停止播放背景音乐');
     }
 
-    // 设置音量 (0.0 - 1.0)
-    setVolume(volume, trackId = null) {
-        volume = Math.max(0.0, Math.min(1.0, volume));
 
-        if (trackId === 1) {
-            this.bgm1.volume = volume;
-        } else if (trackId === 2) {
-            this.bgm2.volume = volume;
-        } else if (trackId === 3) {
-            this.bgm3.volume = volume;
-        } else if (trackId === 4) {
-            this.bgm4.volume = volume;
-        } else if (trackId === 5) {
-            this.bgm5.volume = volume;
-        } else if (trackId === null) {
-            this.bgm1.volume = volume;
-            this.bgm2.volume = volume;
-            this.bgm3.volume = volume;
-            this.bgm4.volume = volume;
-            this.bgm5.volume = volume;
-        }
-
-        console.log(`设置音量: ${Math.round(volume * 100)}%`);
-    }
-
-    // 淡入效果
-    fadeIn(duration = 2000, targetVolume = 0.5) {
-        if (!this.isPlaying) {
-            this.setVolume(0);
-            this.playMusic();
-        }
-
-        const startVolume = this.currentMusic.volume;
-        const volumeStep = (targetVolume - startVolume) / (duration / 100);
-        let currentStep = 0;
-
-        if (this.fadeInterval) clearInterval(this.fadeInterval);
-        this.fadeInterval = setInterval(() => {
-            currentStep++;
-            const newVolume = startVolume + (volumeStep * currentStep);
-            this.setVolume(newVolume);
-
-            if (currentStep >= duration / 100) {
-                clearInterval(this.fadeInterval);
-                this.fadeInterval = null;
-                this.setVolume(targetVolume);
-            }
-        }, 100);
-    }
-
-    // 淡出效果
-    fadeOut(duration = 2000) {
-        if (!this.isPlaying) return;
-
-        const startVolume = this.currentMusic.volume;
-        const volumeStep = startVolume / (duration / 100);
-        let currentStep = 0;
-
-        if (this.fadeInterval) clearInterval(this.fadeInterval);
-        this.fadeInterval = setInterval(() => {
-            currentStep++;
-            const newVolume = Math.max(0, startVolume - (volumeStep * currentStep));
-            this.setVolume(newVolume);
-
-            if (currentStep >= duration / 100 || newVolume <= 0) {
-                clearInterval(this.fadeInterval);
-                this.fadeInterval = null;
-                this.stopMusic();
-            }
-        }, 100);
-    }
 
     // 倒计时音乐调度
     startCountdownMusic() {
-        // 60-30秒: 播放BGM1，音量40%
-        this.fadeIn(3000, 0.4);
+        // 直接播放BGM1，不再自动切换
         this.playMusic(1);
-
-        // 30秒后切换到BGM2
-        setTimeout(() => {
-            if (this.isPlaying) {
-                this.crossfade(1, 2, 3000, 0.5);
-            }
-        }, 30000);
-
-        // 最后10秒增加音量
-        setTimeout(() => {
-            if (this.isPlaying) {
-                this.setVolume(0.7, 2);
-            }
-        }, 50000);
-
-        // 零点时刻达到高潮
-        setTimeout(() => {
-            if (this.isPlaying) {
-                this.setVolume(0.8, 2);
-            }
-        }, 60000);
     }
 
-    // 交叉淡变效果
-    crossfade(fromTrack, toTrack, duration = 3000, targetVolume = 0.5) {
-        const fromAudio = fromTrack === 1 ? this.bgm1 : this.bgm2;
-        const toAudio = toTrack === 1 ? this.bgm1 : this.bgm2;
 
-        // 开始播放目标音轨
-        toAudio.currentTime = 0;
-        toAudio.volume = 0;
-        toAudio.play();
-
-        const fadeSteps = duration / 100;
-        const volumeStep = targetVolume / fadeSteps;
-        let currentStep = 0;
-
-        if (this.crossfadeInterval) clearInterval(this.crossfadeInterval);
-        this.crossfadeInterval = setInterval(() => {
-            currentStep++;
-
-            // 降低原音轨音量
-            const fromVolume = Math.max(0, 1 - (currentStep / fadeSteps));
-            fromAudio.volume = fromVolume;
-
-            // 增加目标音轨音量
-            const toVolume = Math.min(targetVolume, volumeStep * currentStep);
-            toAudio.volume = toVolume;
-
-            if (currentStep >= fadeSteps) {
-                clearInterval(this.crossfadeInterval);
-                this.crossfadeInterval = null;
-                fromAudio.pause();
-                fromAudio.currentTime = 0;
-                toAudio.volume = targetVolume;
-                this.currentMusic = toAudio;
-                this.isPlaying = true;
-            }
-        }, 100);
-    }
 
     // 提示用户交互（浏览器自动播放策略）
     showUserInteractionPrompt() {
@@ -302,30 +162,44 @@ class SpringFestivalMusicController {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             color: white;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 30px;
+            border-radius: 15px;
             text-align: center;
             z-index: 10000;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         `;
         prompt.innerHTML = `
-            <h3>🎵 点击播放背景音乐</h3>
-            <p>浏览器需要用户交互才能播放音频</p>
-            <button onclick="this.parentElement.remove(); musicController.playMusic(1)" 
-                    style="background: #d63384; color: white; border: none; 
-                           padding: 10px 20px; border-radius: 5px; cursor: pointer;">
-                🎊 播放音乐
-            </button>
+            <h2>🎊 2026维多利亚春节联欢晚会 - 操作指南</h2>
+            
+            <div style="margin: 20px 0; text-align: left;">
+                <h4 style="color: #ffd700; margin-bottom: 10px;">🎵 音乐控制</h4>
+                <p>• 数字键 1-5: 播放不同的背景音乐</p>
+                <p>• 空格键: 播放/停止当前音乐</p>
+            </div>
+            
+            <div style="margin: 20px 0; text-align: left;">
+                <h4 style="color: #ffd700; margin: 15px 0 10px;">🏢 赞助商信息</h4>
+                <p>• 点击主办方/赞助商名称查看详细信息</p>
+                <p>• S键: 开始/停止自动循环展示赞助商</p>
+                <p>• ESC键: 关闭当前弹窗</p>
+            </div>
+            
+            <div style="margin: 20px 0; text-align: left;">
+                <h4 style="color: #ffd700; margin: 15px 0 10px;">🖥️ 显示控制</h4>
+                <p>• 双击页面空白处进入/退出全屏模式</p>
+            </div>
         `;
         document.body.appendChild(prompt);
 
-        // 5秒后自动消失
+        // 15秒后自动消失
         setTimeout(() => {
             if (prompt.parentElement) {
                 prompt.remove();
             }
-        }, 5000);
+        }, 15000);
     }
 
     // 获取当前状态
@@ -370,20 +244,16 @@ document.addEventListener('DOMContentLoaded', () => {
             case ' ':
                 if (musicController.isPlaying) {
                     musicController.stopMusic();
-                } else {
-                    musicController.playMusic(1);
                 }
                 event.preventDefault();
                 break;
-            case 'ArrowUp':
-                musicController.setVolume(Math.min(1, musicController.getStatus().bgm1Volume + 0.1));
-                break;
-            case 'ArrowDown':
-                musicController.setVolume(Math.max(0, musicController.getStatus().bgm1Volume - 0.1));
-                break;
+
         }
     });
 
-    console.log('🎊 春节背景音乐控制器已加载');
-    console.log('键盘控制: 1-BGM1, 2-BGM2, 空格-播放/停止, ↑↓-调节音量');
+    console.log('🎊 2026维多利亚春节联欢晚会倒计时系统已加载');
+    console.log('操作指南:');
+    console.log('  音乐控制: 1-5键-播放音乐, 空格-停止播放');
+    console.log('  赞助商: 点击查看详情, S键-自动展示, ESC-关闭弹窗');
+    console.log('  显示: 双击空白处-全屏模式');
 });

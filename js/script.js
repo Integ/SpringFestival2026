@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Target date: February 15, 2026 at 7:00 PM
-    const targetDate = new Date('2026-02-15T19:00:00');
+    // 晚会目标时间: 2026年2月15日 晚上7:00 温哥华时间 (PST)
+    // 温哥华在2月使用太平洋标准时间 (PST)，UTC-8
+    // 使用ISO格式明确指定时区，确保倒计时基于温哥华时间
+    const targetDate = new Date('2026-02-15T19:00:00-08:00');
 
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
@@ -14,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (difference <= 0) {
             // Event has started
             clearInterval(timerInterval);
-            document.querySelector('.countdown-container').innerHTML = '<div class="number" style="font-size: 5rem; color: var(--festive-red);">晚会即将开始</div>';
+            document.querySelector('.countdown-container').innerHTML = '<div class="number" style="font-size: 5rem; color: var(--festive-red); text-shadow: 0 0 20px rgba(201, 47, 47, 0.5);">🎊 晚会即将开始 🎊</div>';
             return;
         }
 
@@ -23,10 +25,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        daysEl.textContent = String(days).padStart(2, '0');
-        hoursEl.textContent = String(hours).padStart(2, '0');
-        minutesEl.textContent = String(minutes).padStart(2, '0');
-        secondsEl.textContent = String(seconds).padStart(2, '0');
+        const newDays = String(days).padStart(2, '0');
+        const newHours = String(hours).padStart(2, '0');
+        const newMinutes = String(minutes).padStart(2, '0');
+        const newSeconds = String(seconds).padStart(2, '0');
+
+        // Update with animation
+        updateNumberWithAnimation(daysEl, newDays);
+        updateNumberWithAnimation(hoursEl, newHours);
+        updateNumberWithAnimation(minutesEl, newMinutes);
+        updateNumberWithAnimation(secondsEl, newSeconds);
+    }
+
+    function updateNumberWithAnimation(element, newValue) {
+        const currentValue = element.textContent;
+        
+        if (currentValue !== newValue) {
+            // Add simple fade animation
+            element.style.opacity = '0.3';
+            
+            // Update text
+            setTimeout(() => {
+                element.textContent = newValue;
+                element.style.opacity = '1';
+            }, 150);
+        }
     }
 
     // Initial call to avoid delay
@@ -34,17 +57,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update every second
     const timerInterval = setInterval(updateCountdown, 1000);
-
-    // Fullscreen toggle on double click
-    document.addEventListener('dblclick', () => {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch(err => {
-                console.error(`Error attempting to enable fullscreen: ${err.message}`);
-            });
-        } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            }
-        }
-    });
 });

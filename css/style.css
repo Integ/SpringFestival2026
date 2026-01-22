@@ -60,12 +60,35 @@ header {
 }
 
 .organizer {
-    font-size: 2.2rem;
-    /* Increased from 1.8rem */
+    font-size: 3rem;
+    /* Increased from 2.2rem */
     font-weight: 700;
     color: var(--ink-gray);
     letter-spacing: 2px;
     text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.organizer-btn {
+    background: none;
+    border: none;
+    color: var(--ink-gray);
+    font-size: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    letter-spacing: inherit;
+    text-shadow: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: var(--festive-red);
+    text-decoration-style: solid;
+    text-underline-offset: 3px;
+    transition: all 0.3s ease;
+}
+
+.organizer-btn:hover {
+    color: var(--festive-red);
+    text-decoration-color: var(--festive-red);
+    transform: scale(1.05);
 }
 
 main {
@@ -81,16 +104,27 @@ main {
 .main-title {
     font-family: 'Ma Shan Zheng', cursive;
     /* Calligraphy style */
-    font-size: 8rem;
-    /* Increased from 6rem */
+    font-size: 9rem;
+    /* Increased from 8rem */
     margin-bottom: 1rem;
     color: var(--festive-red);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.year-number {
+    display: inline-block;
+    animation: yearGlow 4s ease-in-out infinite;
+    background: linear-gradient(45deg, #FFD700, #FF6B6B, #FFD700, #E6B800);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 300% 300%;
+    animation: yearBackgroundMove 10s linear infinite, yearGlow 4s ease-in-out infinite;
+}
+
 .en-title {
-    font-size: 3.5rem;
-    /* Increased from 2.5rem */
+    font-size: 4.2rem;
+    /* Increased from 3.5rem */
     color: var(--festive-red);
     /* Gold color */
     margin-top: -1rem;
@@ -104,8 +138,8 @@ main {
 
 .sub-title {
     font-family: 'Ma Shan Zheng', cursive;
-    font-size: 5rem;
-    /* Increased from 3.5rem */
+    font-size: 6rem;
+    /* Increased from 5rem */
     color: #E6B800;
     margin-bottom: 3rem;
     position: relative;
@@ -115,18 +149,19 @@ main {
 .countdown-container {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    /* Align numbers and labels nicely */
-    gap: 2rem;
-    width: 1200px;
-    /* Increased from 1200px */
-    /* Fixed width to prevent resizing */
-    margin-bottom: 4rem;
-    padding: 3rem 5rem;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(5px);
+    align-items: center;
+    gap: 1.5rem;
+    width: fit-content;
+    max-width: 850px;
+    margin: 0 auto 4rem auto;
+    padding: 1.5rem 2.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(201, 47, 47, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .time-block {
@@ -136,54 +171,104 @@ main {
 }
 
 .number {
-    font-size: 10rem;
-    /* Increased from 7rem */
-    font-weight: bold;
+    font-size: 7rem;
+    font-weight: 500;
     line-height: 1;
     color: var(--ink-black);
     font-variant-numeric: tabular-nums;
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Monaco', monospace;
+    letter-spacing: -0.02em;
+    transition: opacity 0.3s ease;
+    display: inline-block;
+    width: 1.4em;
+    text-align: center;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.number.changed {
+    opacity: 0.3;
 }
 
 .label {
     font-size: 2.2rem;
-    /* Increased from 1.5rem */
-    color: var(--ink-gray);
-    margin-top: 0.5rem;
-    font-weight: normal;
+    color: var(--festive-red);
+    margin-top: 1rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(201, 47, 47, 0.2);
+    animation: labelBounce 2s ease-in-out infinite;
+    position: relative;
 }
 
 .separator {
-    font-size: 7rem;
-    /* Increased from 5rem */
+    font-size: 5rem;
+    font-weight: 400;
     color: var(--festive-red);
-    font-weight: bold;
-    margin-bottom: 2.5rem;
-    /* Visually align with numbers */
-    opacity: 0.8;
-    animation: pulse 1s infinite;
+    opacity: 0.7;
+    animation: separatorPulse 2s ease-in-out infinite;
+    vertical-align: middle;
+    line-height: 1;
+    margin-bottom: 30px
 }
 
 .title-sponsor {
     margin-top: 2rem;
-    font-size: 2.5rem;
-    /* Increased from 2rem */
+    font-size: 3rem;
+    /* Increased from 2.5rem */
     color: var(--ink-black);
 }
 
 .sponsor-label {
     display: block;
-    font-size: 1.8rem;
-    /* Increased from 1.2rem */
+    font-size: 2.2rem;
+    /* Increased from 1.8rem */
     color: var(--ink-gray);
     margin-bottom: 0.5rem;
 }
 
 .sponsor-name {
     font-weight: 700;
-    font-size: 3.5rem;
-    /* Increased from 2.5rem */
+    font-size: 4.2rem;
+    /* Increased from 3.5rem */
     color: var(--festive-red);
     font-family: 'Ma Shan Zheng', cursive;
+}
+
+.sponsor-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.title-sponsor-btn {
+    color: var(--festive-red);
+    text-decoration: underline;
+    text-decoration-color: var(--festive-red);
+    text-underline-offset: 3px;
+}
+
+.title-sponsor-btn:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 10px rgba(201, 47, 47, 0.3);
+}
+
+.gold-sponsor-btn {
+    color: var(--ink-gray);
+    font-size: 2.2rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--festive-red);
+    padding: 0.5rem 1rem;
+}
+
+.gold-sponsor-btn:hover {
+    color: var(--festive-red);
+    transform: translateY(-2px);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 footer {
@@ -199,12 +284,240 @@ footer {
 }
 
 .sponsor-item {
-    font-size: 1.8rem;
-    /* Increased from 1.2rem */
+    font-size: 2.2rem;
+    /* Increased from 1.8rem */
     color: var(--ink-gray);
     font-weight: 600;
     border-bottom: 1px solid var(--festive-red);
     padding: 0.5rem 1rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+}
+
+.modal.show {
+    animation: modalFadeIn 0.4s ease-out;
+}
+
+.modal.hide {
+    animation: modalFadeOut 0.4s ease-out;
+}
+
+.modal-content {
+    background-color: var(--paper-white);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 3rem;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    right: 3rem;
+    top: 3rem;
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--ink-gray);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    line-height: 1;
+    z-index: 10;
+    display: none;
+}
+
+.close-btn:hover {
+    color: var(--festive-red);
+}
+
+.modal h2 {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 5rem;
+    color: var(--festive-red);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.modal-image {
+    width: 80%;
+    max-height: 40vh;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-description {
+    font-size: 2.2rem;
+    line-height: 1.8;
+    color: var(--ink-gray);
+    margin-bottom: 2rem;
+    text-align: center;
+    max-width: 800px;
+}
+
+.modal-details {
+    font-size: 1.8rem;
+    line-height: 2;
+    color: var(--ink-black);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem 3rem;
+    border-radius: 15px;
+    border-left: 6px solid var(--festive-red);
+    max-width: 800px;
+    text-align: left;
+}
+
+
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalFadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Countdown Animations */
+@keyframes containerGlow {
+    0%, 100% {
+        box-shadow: 
+            0 15px 40px rgba(201, 47, 47, 0.15),
+            0 5px 15px rgba(255, 215, 0, 0.1),
+            inset 0 0 30px rgba(255, 215, 0, 0.05);
+    }
+    50% {
+        box-shadow: 
+            0 20px 50px rgba(201, 47, 47, 0.25),
+            0 8px 20px rgba(255, 215, 0, 0.2),
+            inset 0 0 40px rgba(255, 215, 0, 0.1);
+    }
+}
+
+@keyframes borderRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shimmerEffect {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes numberPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes numberGlow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes numberFlip {
+    0% {
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: rotateX(90deg);
+        opacity: 0.7;
+    }
+    100% {
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes labelBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-3px);
+    }
+    75% {
+        transform: translateY(-1px);
+    }
+}
+
+@keyframes separatorPulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes starSpin {
+    0% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @keyframes fadeIn {
@@ -326,3 +639,29 @@ footer {
         transform: rotate(-3deg) translateY(0);
     }
 }
+
+/* Year number animations */
+@keyframes yearBackgroundMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes yearGlow {
+    0%, 100% {
+        filter: brightness(1) drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+        transform: scale(1);
+    }
+    50% {
+        filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+        transform: scale(1.02);
+    }
+}
+
+

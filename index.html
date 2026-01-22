@@ -10,7 +10,7 @@
     <!-- Google Fonts for better typography, using Noto Serif SC for Chinese serif style -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 </head>
 
@@ -20,51 +20,57 @@
     <div class="paper-cut-horse-right"></div>
     <div class="container">
         <header>
-            <div class="organizer">主办：维多利亚文化艺术协会 &nbsp;|&nbsp; 维度传媒</div>
+            <div class="organizer">主办：<button class="organizer-btn" data-organizer="vca">维多利亚文化艺术协会</button> &nbsp;|&nbsp; <button class="organizer-btn" data-organizer="weidu">维度传媒</button></div>
         </header>
 
         <main>
-            <h1 class="main-title">2026 维多利亚春节联欢晚会</h1>
+            <h1 class="main-title"><span class="year-number">2026</span><br/>维多利亚春节联欢晚会</h1>
             <p class="en-title">2026 Victoria Spring Festival Gala</p>
             <h2 class="sub-title">金马迎春</h2>
 
             <div class="countdown-container">
                 <div class="time-block">
                     <span id="days" class="number">00</span>
-                    <span class="label">天</span>
                 </div>
                 <div class="separator">:</div>
                 <div class="time-block">
                     <span id="hours" class="number">00</span>
-                    <span class="label">时</span>
                 </div>
                 <div class="separator">:</div>
                 <div class="time-block">
                     <span id="minutes" class="number">00</span>
-                    <span class="label">分</span>
                 </div>
                 <div class="separator">:</div>
                 <div class="time-block">
                     <span id="seconds" class="number">00</span>
-                    <span class="label">秒</span>
                 </div>
             </div>
 
             <div class="title-sponsor">
                 <span class="sponsor-label">冠名赞助</span>
-                <span class="sponsor-name">维多利亚律师事务所</span>
+                <button class="sponsor-btn title-sponsor-btn" data-sponsor="title">维多利亚律师事务所</button>
             </div>
         </main>
 
         <footer>
             <div class="nominated-sponsors-grid">
-                <div class="sponsor-item">金牌赞助A</div>
-                <div class="sponsor-item">金牌赞助B</div>
-                <div class="sponsor-item">金牌赞助C</div>
-                <div class="sponsor-item">金牌赞助D</div>
-                <div class="sponsor-item">金牌赞助E</div>
+                <button class="sponsor-btn gold-sponsor-btn" data-sponsor="gold1">金牌赞助A</button>
+                <button class="sponsor-btn gold-sponsor-btn" data-sponsor="gold2">金牌赞助B</button>
+                <button class="sponsor-btn gold-sponsor-btn" data-sponsor="gold3">金牌赞助C</button>
+                <button class="sponsor-btn gold-sponsor-btn" data-sponsor="gold4">金牌赞助D</button>
+                <button class="sponsor-btn gold-sponsor-btn" data-sponsor="gold5">金牌赞助E</button>
             </div>
         </footer>
+    </div>
+
+    <!-- Modal for Organizers and Sponsors -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div id="modalBody">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
     </div>
 
     <!-- Spring Festival Music Controller -->
@@ -73,38 +79,248 @@
     <!-- Original Countdown Script -->
     <script src="js/script.js"></script>
 
-    <!-- Auto-start background music for countdown -->
+    <!-- Modal Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 等待页面完全加载后开始播放背景音乐
-            setTimeout(() => {
-                if (typeof musicController !== 'undefined') {
-                    // 如果距离目标时间还有不到60秒，使用快速启动
-                    const now = new Date().getTime();
-                    const targetDate = new Date('January 25, 2026 20:00:00').getTime();
-                    const distance = targetDate - now;
+        // Modal functionality
+        const modal = document.getElementById('infoModal');
+        const modalBody = document.getElementById('modalBody');
+        const closeBtn = document.querySelector('.close-btn');
 
-                    if (distance > 0 && distance <= 60000) {
-                        // 最后一分钟直接播放bgm2
-                        musicController.setVolume(0.6, 2);
-                        musicController.playMusic(2);
-                    } else if (distance > 60000) {
-                        // 启动完整倒计时音乐序列
-                        musicController.startCountdownMusic();
-                    }
+        // Organizer and sponsor information
+        const infoData = {
+            organizers: {
+                vca: {
+                    title: '维多利亚文化艺术协会',
+                    image: '/img/VictoriaCalture.png',
+                    description: '维多利亚文化艺术协会是本地知名的文化推广组织，致力于促进中加文化交流，定期举办各类文化活动。',
+                    details: '成立时间：2010年<br>主要活动：春节联欢晚会、中秋节庆典、文化艺术展览<br>联系方式：info@victoriacultural.ca'
+                },
+                weidu: {
+                    title: '维度传媒',
+                    image: '/img/WeiduMedia.png',
+                    description: '维度传媒是专业的多媒体制作公司，专注于活动策划、视频制作和媒体推广。',
+                    details: '服务范围：活动策划、视频制作、媒体推广<br>代表作品：多场大型文化活动<br>联系方式：contact@weidumedia.com'
                 }
-            }, 2000);
+            },
+            sponsors: {
+                title: {
+                    title: '维多利亚律师事务所',
+                    image: '/img/sponsor1.jpg',
+                    description: '维多利亚律师事务所是本地知名的法律服务机构，为社区提供专业的法律服务。',
+                    details: '专业领域：家庭法、商业法、移民法<br>服务承诺：专业、诚信、高效<br>联系方式：250-555-0123'
+                },
+                gold1: {
+                    title: '金牌赞助A',
+                    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&h=600&fit=crop',
+                    description: '这是一家待定的金牌赞助商，感谢他们对春晚的大力支持！',
+                    details: '赞助级别：金牌赞助商<br>赞助权益：Logo展示、媒体宣传、现场展示<br>联系方式：待定'
+                },
+                gold2: {
+                    title: '金牌赞助B',
+                    image: 'https://images.pexels.com/photos/1268872/pexels-photo-1268872.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+                    description: '这是一家待定的金牌赞助商，感谢他们对春晚的大力支持！',
+                    details: '赞助级别：金牌赞助商<br>赞助权益：Logo展示、媒体宣传、现场展示<br>联系方式：待定'
+                },
+                gold3: {
+                    title: '金牌赞助C',
+                    image: '/img/sponsor3.jpg',
+                    description: '这是一家待定的金牌赞助商，感谢他们对春晚的大力支持！',
+                    details: '赞助级别：金牌赞助商<br>赞助权益：Logo展示、媒体宣传、现场展示<br>联系方式：待定'
+                },
+                gold4: {
+                    title: '金牌赞助D',
+                    image: '/img/sponsor4.jpg',
+                    description: '这是一家待定的金牌赞助商，感谢他们对春晚的大力支持！',
+                    details: '赞助级别：金牌赞助商<br>赞助权益：Logo展示、媒体宣传、现场展示<br>联系方式：待定'
+                },
+                gold5: {
+                    title: '金牌赞助E',
+                    image: '/img/sponsor5.jpg',
+                    description: '这是一家待定的金牌赞助商，感谢他们对春晚的大力支持！',
+                    details: '赞助级别：金牌赞助商<br>赞助权益：Logo展示、媒体宣传、现场展示<br>联系方式：待定'
+                }
+            }
+        };
+
+        // Function to show modal with content
+        function showModal(type, key) {
+            const data = infoData[type][key];
+            
+            modalBody.innerHTML = `
+                <h2>${data.title}</h2>
+                <img src="${data.image}" alt="${data.title}" class="modal-image">
+                <p class="modal-description">${data.description}</p>
+                <div class="modal-details">${data.details}</div>
+            `;
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent background scroll
+            
+            // Add fade-in animation
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+            
+            // Add click event to close modal when clicking on modal content
+            setTimeout(() => {
+                modalBody.addEventListener('click', handleModalContentClick);
+            }, 100);
+        }
+
+        // Organizer button clicks
+        document.querySelectorAll('.organizer-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const organizerKey = btn.getAttribute('data-organizer');
+                showModal('organizers', organizerKey);
+            });
         });
 
-        // 添加用户点击页面任意位置启动音乐的友好提示
-        let musicStarted = false;
-        document.addEventListener('click', () => {
-            if (!musicStarted && typeof musicController !== 'undefined') {
-                musicController.playMusic(1);
-                musicStarted = true;
-                console.log('🎵 背景音乐已启动');
+        // Sponsor button clicks
+        document.querySelectorAll('.sponsor-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const sponsorKey = btn.getAttribute('data-sponsor');
+                showModal('sponsors', sponsorKey);
+            });
+        });
+
+        // Function to close modal with fade-out animation
+        function closeModal() {
+            modal.classList.remove('show');
+            modal.classList.add('hide');
+            
+            // Remove modal content click event listener
+            modalBody.removeEventListener('click', handleModalContentClick);
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+                modal.classList.remove('hide');
+                document.body.style.overflow = 'auto';
+            }, 400);
+        }
+        
+        // Handle clicks on modal content
+        function handleModalContentClick(e) {
+            e.stopPropagation();
+        }
+
+        // Close modal
+        closeBtn.addEventListener('click', closeModal);
+
+        // Close modal when clicking on modal background or content
+        window.addEventListener('click', (e) => {
+            if (e.target === modal || e.target.closest('.modal-content')) {
+                closeModal();
             }
-        }, { once: true });
+        });
+
+        // Auto-show sponsor modals functionality
+        let autoShowInterval = null;
+        let currentSponsorIndex = 0;
+        let isAutoShowing = false;
+        
+        // Define the order and duration for sponsors
+        const sponsorSequence = [
+            { key: 'title', type: 'sponsors', duration: 10000 }, // 10 seconds
+            { key: 'gold1', type: 'sponsors', duration: 5000 }, // 5 seconds
+            { key: 'gold2', type: 'sponsors', duration: 5000 },
+            { key: 'gold3', type: 'sponsors', duration: 5000 },
+            { key: 'gold4', type: 'sponsors', duration: 5000 },
+            { key: 'gold5', type: 'sponsors', duration: 5000 }
+        ];
+
+        function startAutoShow() {
+            if (isAutoShowing) return;
+            
+            isAutoShowing = true;
+            currentSponsorIndex = 0;
+            
+            // Show first sponsor
+            showNextSponsor();
+        }
+
+        function showNextSponsor() {
+            if (!isAutoShowing) return;
+            
+            const sponsor = sponsorSequence[currentSponsorIndex];
+            showModal(sponsor.type, sponsor.key);
+            
+            // Schedule next sponsor
+            autoShowInterval = setTimeout(() => {
+                if (isAutoShowing) {
+                    currentSponsorIndex = (currentSponsorIndex + 1) % sponsorSequence.length;
+                    showNextSponsor();
+                }
+            }, sponsor.duration);
+        }
+
+        function stopAutoShow() {
+            isAutoShowing = false;
+            
+            if (autoShowInterval) {
+                clearTimeout(autoShowInterval);
+                autoShowInterval = null;
+            }
+            
+            // Close modal if it's open
+            if (modal.style.display === 'flex') {
+                closeModal();
+            }
+        }
+
+        function toggleAutoShow() {
+            if (isAutoShowing) {
+                stopAutoShow();
+            } else {
+                startAutoShow();
+            }
+        }
+
+        // Global keyboard event listener
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 's' || e.key === 'S') {
+                e.preventDefault();
+                toggleAutoShow();
+            }
+            
+            // Close modal with Escape key
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                if (isAutoShowing) {
+                    stopAutoShow();
+                } else {
+                    closeModal();
+                }
+            }
+        });
+
+        // Double click to toggle fullscreen
+        document.addEventListener('dblclick', (e) => {
+            // Don't trigger fullscreen when clicking on buttons or modal content
+            if (e.target.tagName === 'BUTTON' || e.target.closest('.modal-content')) {
+                return;
+            }
+            
+            toggleFullscreen();
+        });
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().then(() => {
+                    console.log('进入全屏模式');
+                }).catch(err => {
+                    console.log('无法进入全屏模式:', err);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen().then(() => {
+                        console.log('退出全屏模式');
+                    }).catch(err => {
+                        console.log('无法退出全屏模式:', err);
+                    });
+                }
+            }
+        }
     </script>
 </body>
 
