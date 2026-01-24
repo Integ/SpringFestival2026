@@ -3,10 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="theme-color" content="#fdfbf7">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="2026春节联欢晚会倒计时">
+    <meta name="apple-mobile-web-app-title" content="2026春节联欢晚会">
+    <meta name="description" content="2026维多利亚春节联欢晚会倒计时 - 金马迎春">
+    <link rel="apple-touch-icon" href="img/lantern.png">
+    <link rel="manifest" href="manifest.json">
     <title>2026维多利亚春节联欢晚会倒计时</title>
     <link rel="icon" href="img/lantern.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
@@ -81,6 +87,89 @@
     <!-- Original Countdown Script -->
     <script src="js/script.js"></script>
 
+    <!-- Touch Gesture Support -->
+    <script>
+        // Touch gesture support for mobile devices
+        let touchStartY = 0;
+        let touchEndY = 0;
+        let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        // Handle touch events for modal swipe down
+        document.addEventListener('touchstart', (e) => {
+            if (modal.style.display === 'flex' && e.target.closest('.modal-content')) {
+                touchStartY = e.changedTouches[0].screenY;
+            }
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+            if (modal.style.display === 'flex' && e.target.closest('.modal-content')) {
+                touchEndY = e.changedTouches[0].screenY;
+                const diff = touchStartY - touchEndY;
+                
+                // Add pull-to-close effect
+                if (diff < -50) { // Pulling down
+                    modalContent.style.transform = `translateY(${Math.abs(diff) * 0.5}px)`;
+                    modal.style.backgroundColor = `rgba(0, 0, 0, ${Math.max(0.85 - Math.abs(diff) * 0.002, 0.3)})`;
+                }
+            }
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            if (modal.style.display === 'flex' && e.target.closest('.modal-content')) {
+                const diff = touchStartY - touchEndY;
+                
+                // Reset transform
+                modalContent.style.transform = '';
+                modal.style.backgroundColor = '';
+                
+                // Close modal if pulled down enough
+                if (diff < -100) { // Pulled down significantly
+                    closeModal();
+                    if (isAutoShowing) {
+                        stopAutoShow();
+                    }
+                }
+            }
+        }, { passive: true });
+
+        // Add haptic feedback for supported devices
+        function triggerHaptic(type = 'light') {
+            if ('vibrate' in navigator) {
+                switch(type) {
+                    case 'light':
+                        navigator.vibrate(10);
+                        break;
+                    case 'medium':
+                        navigator.vibrate(25);
+                        break;
+                    case 'heavy':
+                        navigator.vibrate([50, 30, 50]);
+                        break;
+                }
+            }
+        }
+
+        // Enhanced button interactions with haptic feedback
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('touchstart', (e) => {
+                triggerHaptic('light');
+            }, { passive: true });
+        });
+
+        // Detect device orientation and adapt layout
+        function handleOrientationChange() {
+            const isLandscape = window.innerWidth > window.innerHeight;
+            document.body.classList.toggle('landscape', isLandscape);
+            document.body.classList.toggle('portrait', !isLandscape);
+        }
+
+        window.addEventListener('orientationchange', handleOrientationChange);
+        window.addEventListener('resize', handleOrientationChange);
+        
+        // Initial orientation check
+        handleOrientationChange();
+    </script>
+
     <!-- Modal Script -->
     <script>
         // Modal functionality
@@ -149,13 +238,16 @@
             
             modalBody.innerHTML = `
                 <h2>${data.title}</h2>
-                <img src="${data.image}" alt="${data.title}" class="modal-image">
+                <img src="${data.image}" alt="${data.title}" class="modal-image" loading="lazy">
                 <p class="modal-description">${data.description}</p>
                 <div class="modal-details">${data.details}</div>
             `;
             
             modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent background scroll
+            document.body.style.overflow = 'hidden';
+            
+            // Trigger haptic feedback
+            triggerHaptic('medium');
             
             // Add fade-in animation
             setTimeout(() => {
@@ -166,6 +258,11 @@
             setTimeout(() => {
                 modalBody.addEventListener('click', handleModalContentClick);
             }, 100);
+            
+            // Focus management for accessibility
+            setTimeout(() => {
+                modalBody.focus();
+            }, 300);
         }
 
         // Organizer button clicks
@@ -191,6 +288,9 @@
             modal.classList.remove('show');
             modal.classList.add('hide');
             
+            // Trigger haptic feedback
+            triggerHaptic('light');
+            
             // Remove modal content click event listener
             modalBody.removeEventListener('click', handleModalContentClick);
             
@@ -198,6 +298,9 @@
                 modal.style.display = 'none';
                 modal.classList.remove('hide');
                 document.body.style.overflow = 'auto';
+                // Reset transform and background
+                modalContent.style.transform = '';
+                modal.style.backgroundColor = '';
             }, 400);
         }
         

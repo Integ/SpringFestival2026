@@ -1,0 +1,26 @@
+{
+  "name": "2026春节联欢晚会倒计时",
+  "short_name": "春节晚会倒计时",
+  "description": "2026维多利亚春节联欢晚会倒计时 - 金马迎春",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fdfbf7",
+  "theme_color": "#fdfbf7",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "img/lantern.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/lantern.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["entertainment", "lifestyle"],
+  "lang": "zh-CN",
+  "scope": "/",
+  "prefer_related_applications": false
+}
