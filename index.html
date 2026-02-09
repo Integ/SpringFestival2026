@@ -13,7 +13,8 @@
     <!-- Google Fonts for better typography, using Noto Serif SC for Chinese serif style -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 </head>
 
@@ -23,11 +24,12 @@
     <div class="paper-cut-horse-right"></div>
     <div class="container">
         <header>
-            <div class="organizer">主办：<button class="organizer-btn" data-organizer="vca">维多利亚文化艺术协会</button> &nbsp;|&nbsp; <button class="organizer-btn" data-organizer="weidu">维度传媒</button></div>
+            <div class="organizer">主办：<button class="organizer-btn" data-organizer="vca">维多利亚文化艺术协会</button>
+                &nbsp;|&nbsp; <button class="organizer-btn" data-organizer="weidu">维度传媒</button></div>
         </header>
 
         <main>
-            <h1 class="main-title"><span class="year-number">2026</span><br/>维多利亚春节联欢晚会</h1>
+            <h1 class="main-title"><span class="year-number">2026</span><br />维多利亚春节联欢晚会</h1>
             <p class="en-title">2026 Victoria Spring Festival Gala</p>
             <h2 class="sub-title">金马迎春</h2>
 
@@ -51,10 +53,10 @@
 
             <div class="title-sponsor">
                 <span class="sponsor-label">冠名赞助</span>
-                <button class="sponsor-btn title-sponsor-btn" data-sponsor="title">维多利亚律师事务所</button>
+                <button class="sponsor-btn title-sponsor-btn" data-sponsor="title">君立律师事务所</button>
             </div>
         </main>
-
+        <!-- 
         <footer>
             <div class="nominated-sponsors-grid">
                 <button class="sponsor-btn gold-sponsor-btn" data-sponsor="gold1">金牌赞助A</button>
@@ -63,7 +65,7 @@
                 <button class="sponsor-btn gold-sponsor-btn" data-sponsor="gold4">金牌赞助D</button>
                 <button class="sponsor-btn gold-sponsor-btn" data-sponsor="gold5">金牌赞助E</button>
             </div>
-        </footer>
+        </footer> -->
     </div>
 
     <!-- Modal for Organizers and Sponsors -->
@@ -105,10 +107,10 @@
             },
             sponsors: {
                 title: {
-                    title: '维多利亚律师事务所',
+                    title: '君立律师事务所 - 您的BC本地法律伙伴',
                     image: '/img/sponsor1.jpg',
-                    description: '维多利亚律师事务所是本地知名的法律服务机构，为社区提供专业的法律服务。',
-                    details: '专业领域：家庭法、商业法、移民法<br>服务承诺：专业、诚信、高效<br>联系方式：250-555-0123'
+                    description: '法律问题不必复杂，专业、清晰、以您为先。',
+                    details: '服务领域：公司法、房地产、家庭法、移民、诉讼。'
                 },
                 gold1: {
                     title: '金牌赞助A',
@@ -146,22 +148,22 @@
         // Function to show modal with content
         function showModal(type, key) {
             const data = infoData[type][key];
-            
+
             modalBody.innerHTML = `
                 <h2>${data.title}</h2>
                 <img src="${data.image}" alt="${data.title}" class="modal-image">
                 <p class="modal-description">${data.description}</p>
                 <div class="modal-details">${data.details}</div>
             `;
-            
+
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden'; // Prevent background scroll
-            
+
             // Add fade-in animation
             setTimeout(() => {
                 modal.classList.add('show');
             }, 10);
-            
+
             // Add click event to close modal when clicking on modal content
             setTimeout(() => {
                 modalBody.addEventListener('click', handleModalContentClick);
@@ -190,17 +192,17 @@
         function closeModal() {
             modal.classList.remove('show');
             modal.classList.add('hide');
-            
+
             // Remove modal content click event listener
             modalBody.removeEventListener('click', handleModalContentClick);
-            
+
             setTimeout(() => {
                 modal.style.display = 'none';
                 modal.classList.remove('hide');
                 document.body.style.overflow = 'auto';
             }, 400);
         }
-        
+
         // Handle clicks on modal content
         function handleModalContentClick(e) {
             e.stopPropagation();
@@ -219,7 +221,7 @@
         let autoShowInterval = null;
         let currentSponsorIndex = 0;
         let isAutoShowing = false;
-        
+
         // Define the order and duration for sponsors
         const sponsorSequence = [
             { key: 'title', type: 'sponsors', duration: 10000 }, // 10 seconds
@@ -232,20 +234,20 @@
 
         function startAutoShow() {
             if (isAutoShowing) return;
-            
+
             isAutoShowing = true;
             currentSponsorIndex = 0;
-            
+
             // Show first sponsor
             showNextSponsor();
         }
 
         function showNextSponsor() {
             if (!isAutoShowing) return;
-            
+
             const sponsor = sponsorSequence[currentSponsorIndex];
             showModal(sponsor.type, sponsor.key);
-            
+
             // Schedule next sponsor
             autoShowInterval = setTimeout(() => {
                 if (isAutoShowing) {
@@ -257,12 +259,12 @@
 
         function stopAutoShow() {
             isAutoShowing = false;
-            
+
             if (autoShowInterval) {
                 clearTimeout(autoShowInterval);
                 autoShowInterval = null;
             }
-            
+
             // Close modal if it's open
             if (modal.style.display === 'flex') {
                 closeModal();
@@ -283,7 +285,7 @@
                 e.preventDefault();
                 toggleAutoShow();
             }
-            
+
             // Close modal with Escape key
             if (e.key === 'Escape' && modal.style.display === 'flex') {
                 if (isAutoShowing) {
@@ -300,7 +302,7 @@
             if (e.target.tagName === 'BUTTON' || e.target.closest('.modal-content')) {
                 return;
             }
-            
+
             toggleFullscreen();
         });
 
