@@ -493,8 +493,7 @@ footer {
 }
 
 .modal-image {
-    width: 80%;
-    max-height: 40vh;
+    width: 85%;
     object-fit: cover;
     border-radius: 15px;
     margin-bottom: 2rem;
@@ -955,7 +954,6 @@ footer {
 
     .modal-image {
         width: 95%;
-        max-height: 30vh;
     }
 
     .modal-description {

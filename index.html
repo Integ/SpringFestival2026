@@ -107,10 +107,10 @@
             },
             sponsors: {
                 title: {
-                    title: '君立律师事务所 - 您的BC本地法律伙伴',
-                    image: '/img/sponsor1.jpg',
-                    description: '法律问题不必复杂，专业、清晰、以您为先。',
-                    details: '服务领域：公司法、房地产、家庭法、移民、诉讼。'
+                    title: '',
+                    image: '/img/sponsor.png',
+                    description: '',
+                    details: ''
                 },
                 gold1: {
                     title: '金牌赞助A',
@@ -150,10 +150,7 @@
             const data = infoData[type][key];
 
             modalBody.innerHTML = `
-                <h2>${data.title}</h2>
                 <img src="${data.image}" alt="${data.title}" class="modal-image">
-                <p class="modal-description">${data.description}</p>
-                <div class="modal-details">${data.details}</div>
             `;
 
             modal.style.display = 'flex';
