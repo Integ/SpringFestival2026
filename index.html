@@ -2,325 +2,148 @@
 <html lang="zh-CN">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="theme-color" content="#fdfbf7">
-    <title>2026维多利亚春节联欢晚会倒计时</title>
-    <link rel="icon" href="img/lantern.png" type="image/png">
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Google Fonts for better typography, using Noto Serif SC for Chinese serif style -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 维多利亚春节联欢晚会 | Victoria Chinese New Year Gala</title>
+  <meta name="description" content="2026年维多利亚春节联欢晚会回顾 — 马年大吉，精彩瞬间。2026 Victoria Chinese New Year Gala Highlights.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="background-overlay"></div>
-    <div class="paper-cut-horse"></div>
-    <div class="paper-cut-horse-right"></div>
-    <div class="container">
-        <header>
-            <div class="organizer">主办：<button class="organizer-btn" data-organizer="vca">维多利亚文化艺术协会</button>
-                &nbsp;|&nbsp; <button class="organizer-btn" data-organizer="weidu">维度传媒</button></div>
-        </header>
+  <!-- Floating Particles Background -->
+  <div class="particles-container" id="particles"></div>
 
-        <main>
-            <h1 class="main-title"><span class="year-number">2026</span><br />维多利亚春节联欢晚会</h1>
-            <p class="en-title">2026 Victoria Spring Festival Gala</p>
-            <h2 class="sub-title">金马迎春</h2>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <a href="#hero" class="nav-link">首页</a>
+    <a href="#program" class="nav-link">节目单</a>
+    <a href="#gallery" class="nav-link">精彩瞬间</a>
+    <a href="#sponsor" class="nav-link">鸣谢</a>
+  </nav>
 
-            <div class="countdown-container">
-                <div class="time-block">
-                    <span id="days" class="number">00</span>
-                </div>
-                <div class="separator">:</div>
-                <div class="time-block">
-                    <span id="hours" class="number">00</span>
-                </div>
-                <div class="separator">:</div>
-                <div class="time-block">
-                    <span id="minutes" class="number">00</span>
-                </div>
-                <div class="separator">:</div>
-                <div class="time-block">
-                    <span id="seconds" class="number">00</span>
-                </div>
-            </div>
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="lantern lantern-left">🏮</div>
+    <div class="lantern lantern-right">🏮</div>
+    <div class="lantern lantern-left2">🏮</div>
+    <div class="lantern lantern-right2">🏮</div>
 
-            <div class="title-sponsor">
-                <span class="sponsor-label">冠名赞助</span>
-                <button class="sponsor-btn title-sponsor-btn" data-sponsor="title">君立律师事务所</button>
-            </div>
-        </main>
-        <!-- 
-        <footer>
-            <div class="nominated-sponsors-grid">
-                <button class="sponsor-btn gold-sponsor-btn" data-sponsor="gold1">金牌赞助A</button>
-                <button class="sponsor-btn gold-sponsor-btn" data-sponsor="gold2">金牌赞助B</button>
-                <button class="sponsor-btn gold-sponsor-btn" data-sponsor="gold3">金牌赞助C</button>
-                <button class="sponsor-btn gold-sponsor-btn" data-sponsor="gold4">金牌赞助D</button>
-                <button class="sponsor-btn gold-sponsor-btn" data-sponsor="gold5">金牌赞助E</button>
-            </div>
-        </footer> -->
-    </div>
+    <div class="hero-content">
+      <div class="hero-year">2026</div>
+      <div class="hero-zodiac">🐴 马年大吉 🐴</div>
+      <h1 class="hero-title-cn">维多利亚春节联欢晚会</h1>
+      <p class="hero-title-en">Victoria Chinese New Year Gala</p>
 
-    <!-- Modal for Organizers and Sponsors -->
-    <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <div id="modalBody">
-                <!-- Content will be dynamically inserted here -->
-            </div>
+      <div class="hero-divider"></div>
+
+      <div class="hero-info">
+        <div class="hero-info-item">
+          <span class="icon">📅</span>
+          <span>2026年2月15日 (星期日) 19:00</span>
         </div>
+        <div class="hero-info-item">
+          <span class="icon">📍</span>
+          <span>Dave Dunnet Community Theatre</span>
+        </div>
+        <div class="hero-info-item">
+          <span class="icon">🎭</span>
+          <span>主办：维多利亚文化艺术协会 · 维度传媒</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Spring Festival Music Controller -->
-    <script src="assets/audio/music-controller.js"></script>
+    <div class="hero-scroll-hint">⌄</div>
+  </section>
 
-    <!-- Original Countdown Script -->
-    <script src="js/script.js"></script>
+  <!-- Program Section -->
+  <div class="section-separator"></div>
+  <section class="section" id="program">
+    <div class="section-header fade-in">
+      <h2 class="section-title-cn">晚会节目单</h2>
+      <p class="section-title-en">Program</p>
+      <div class="section-divider"></div>
+    </div>
+    <p style="text-align:center; color: var(--text-secondary); margin-top: 2rem; font-size: 0.9rem;" class="fade-in">
+      📄 <a href="节目单.pdf" target="_blank"
+        style="color: var(--gold-light); border-bottom: 1px dashed var(--gold-primary);">查看完整节目单 (PDF)</a>
+    </p>
+  </section>
 
-    <!-- Modal Script -->
-    <script>
-        // Modal functionality
-        const modal = document.getElementById('infoModal');
-        const modalBody = document.getElementById('modalBody');
+  <!-- Gallery Section -->
+  <div class="section-separator"></div>
+  <section class="section" id="gallery">
+    <div class="section-header fade-in">
+      <h2 class="section-title-cn">精彩瞬间</h2>
+      <p class="section-title-en">Gallery</p>
+      <div class="section-divider"></div>
+    </div>
 
-        // Organizer and sponsor information
-        const infoData = {
-            organizers: {
-                vca: {
-                    title: '维多利亚文化艺术协会',
-                    image: '/img/VictoriaCalture.png',
-                    description: '维多利亚文化艺术协会是本地知名的文化推广组织，致力于促进中加文化交流，定期举办各类文化活动。',
-                    details: '成立时间：2010年<br>主要活动：春节联欢晚会、中秋节庆典、文化艺术展览<br>联系方式：info@victoriacultural.ca'
-                },
-                weidu: {
-                    title: '维度传媒',
-                    image: '/img/WeiduMedia.png',
-                    description: '维度传媒是专业的多媒体制作公司，专注于活动策划、视频制作和媒体推广。',
-                    details: '服务范围：活动策划、视频制作、媒体推广<br>代表作品：多场大型文化活动<br>联系方式：contact@weidumedia.com'
-                }
-            },
-            sponsors: {
-                title: {
-                    title: '',
-                    image: '/img/sponsor.png',
-                    description: '',
-                    details: ''
-                },
-                gold1: {
-                    title: '金牌赞助A',
-                    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&h=600&fit=crop',
-                    description: '这是一家待定的金牌赞助商，感谢他们对春晚的大力支持！',
-                    details: '赞助级别：金牌赞助商<br>赞助权益：Logo展示、媒体宣传、现场展示<br>联系方式：待定'
-                },
-                gold2: {
-                    title: '金牌赞助B',
-                    image: 'https://images.pexels.com/photos/1268872/pexels-photo-1268872.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-                    description: '这是一家待定的金牌赞助商，感谢他们对春晚的大力支持！',
-                    details: '赞助级别：金牌赞助商<br>赞助权益：Logo展示、媒体宣传、现场展示<br>联系方式：待定'
-                },
-                gold3: {
-                    title: '金牌赞助C',
-                    image: '/img/sponsor3.jpg',
-                    description: '这是一家待定的金牌赞助商，感谢他们对春晚的大力支持！',
-                    details: '赞助级别：金牌赞助商<br>赞助权益：Logo展示、媒体宣传、现场展示<br>联系方式：待定'
-                },
-                gold4: {
-                    title: '金牌赞助D',
-                    image: '/img/sponsor4.jpg',
-                    description: '这是一家待定的金牌赞助商，感谢他们对春晚的大力支持！',
-                    details: '赞助级别：金牌赞助商<br>赞助权益：Logo展示、媒体宣传、现场展示<br>联系方式：待定'
-                },
-                gold5: {
-                    title: '金牌赞助E',
-                    image: '/img/sponsor5.jpg',
-                    description: '这是一家待定的金牌赞助商，感谢他们对春晚的大力支持！',
-                    details: '赞助级别：金牌赞助商<br>赞助权益：Logo展示、媒体宣传、现场展示<br>联系方式：待定'
-                }
-            }
-        };
+    <div class="gallery-grid fade-in" id="galleryGrid">
+      <!-- Photos populated by JS -->
+    </div>
+  </section>
 
-        // Function to show modal with content
-        function showModal(type, key) {
-            const data = infoData[type][key];
+  <!-- Sponsors Section -->
+  <div class="section-separator"></div>
+  <section class="section" id="sponsor">
+    <div class="section-header fade-in">
+      <h2 class="section-title-cn">特别鸣谢</h2>
+      <p class="section-title-en">Sponsors & Thanks</p>
+      <div class="section-divider"></div>
+    </div>
 
-            modalBody.innerHTML = `
-                <img src="${data.image}" alt="${data.title}" class="modal-image">
-            `;
+    <div class="sponsor-content fade-in">
+      <div class="sponsor-label">冠名赞助 · Title Sponsor</div>
+      <div class="sponsor-card">
+        <img src="images/sponsor.png" alt="君立律师事务所 Foundation Law Corporation">
+      </div>
+    </div>
 
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent background scroll
+    <!-- Organizer Cards -->
+    <div class="organizer-grid fade-in">
+      <div class="organizer-card">
+        <img src="images/VictoriaCalture.png" alt="维多利亚文化艺术协会 Victoria Culture and Art Association"
+          class="organizer-logo">
+        <div class="organizer-name">维多利亚文化艺术协会</div>
+        <div class="organizer-role">主办方 · Organizer</div>
+      </div>
+      <div class="organizer-card">
+        <div class="organizer-icon">🎬</div>
+        <div class="organizer-name">维度传媒</div>
+        <div class="organizer-role">主办方 · Organizer</div>
+      </div>
+      <div class="organizer-card">
+        <div class="organizer-icon">🏛️</div>
+        <div class="organizer-name">Dave Dunnet Community Theatre</div>
+        <div class="organizer-role">演出场地 · Venue</div>
+      </div>
+    </div>
+  </section>
 
-            // Add fade-in animation
-            setTimeout(() => {
-                modal.classList.add('show');
-            }, 10);
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-blessing">🧧 马年大吉 万事如意 🧧</div>
+    <div class="footer-year">2026 丙午马年 · Year of the Horse</div>
+    <div class="footer-credits">
+      © 2026 维多利亚春节联欢晚会 · Victoria Chinese New Year Gala
+    </div>
+  </footer>
 
-            // Add click event to close modal when clicking on modal content
-            setTimeout(() => {
-                modalBody.addEventListener('click', handleModalContentClick);
-            }, 100);
-        }
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">❮</button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">❯</button>
+    <img src="" alt="Gallery image" id="lightboxImg">
+  </div>
 
-        // Organizer button clicks
-        document.querySelectorAll('.organizer-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const organizerKey = btn.getAttribute('data-organizer');
-                showModal('organizers', organizerKey);
-            });
-        });
-
-        // Sponsor button clicks
-        document.querySelectorAll('.sponsor-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const sponsorKey = btn.getAttribute('data-sponsor');
-                showModal('sponsors', sponsorKey);
-            });
-        });
-
-        // Function to close modal with fade-out animation
-        function closeModal() {
-            modal.classList.remove('show');
-            modal.classList.add('hide');
-
-            // Remove modal content click event listener
-            modalBody.removeEventListener('click', handleModalContentClick);
-
-            setTimeout(() => {
-                modal.style.display = 'none';
-                modal.classList.remove('hide');
-                document.body.style.overflow = 'auto';
-            }, 400);
-        }
-
-        // Handle clicks on modal content
-        function handleModalContentClick(e) {
-            e.stopPropagation();
-        }
-
-
-
-        // Close modal when clicking on modal background or content
-        window.addEventListener('click', (e) => {
-            if (e.target === modal || e.target.closest('.modal-content')) {
-                closeModal();
-            }
-        });
-
-        // Auto-show sponsor modals functionality
-        let autoShowInterval = null;
-        let currentSponsorIndex = 0;
-        let isAutoShowing = false;
-
-        // Define the order and duration for sponsors
-        const sponsorSequence = [
-            { key: 'title', type: 'sponsors', duration: 10000 }, // 10 seconds
-            { key: 'gold1', type: 'sponsors', duration: 5000 }, // 5 seconds
-            { key: 'gold2', type: 'sponsors', duration: 5000 },
-            { key: 'gold3', type: 'sponsors', duration: 5000 },
-            { key: 'gold4', type: 'sponsors', duration: 5000 },
-            { key: 'gold5', type: 'sponsors', duration: 5000 }
-        ];
-
-        function startAutoShow() {
-            if (isAutoShowing) return;
-
-            isAutoShowing = true;
-            currentSponsorIndex = 0;
-
-            // Show first sponsor
-            showNextSponsor();
-        }
-
-        function showNextSponsor() {
-            if (!isAutoShowing) return;
-
-            const sponsor = sponsorSequence[currentSponsorIndex];
-            showModal(sponsor.type, sponsor.key);
-
-            // Schedule next sponsor
-            autoShowInterval = setTimeout(() => {
-                if (isAutoShowing) {
-                    currentSponsorIndex = (currentSponsorIndex + 1) % sponsorSequence.length;
-                    showNextSponsor();
-                }
-            }, sponsor.duration);
-        }
-
-        function stopAutoShow() {
-            isAutoShowing = false;
-
-            if (autoShowInterval) {
-                clearTimeout(autoShowInterval);
-                autoShowInterval = null;
-            }
-
-            // Close modal if it's open
-            if (modal.style.display === 'flex') {
-                closeModal();
-            }
-        }
-
-        function toggleAutoShow() {
-            if (isAutoShowing) {
-                stopAutoShow();
-            } else {
-                startAutoShow();
-            }
-        }
-
-        // Global keyboard event listener
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 's' || e.key === 'S') {
-                e.preventDefault();
-                toggleAutoShow();
-            }
-
-            // Close modal with Escape key
-            if (e.key === 'Escape' && modal.style.display === 'flex') {
-                if (isAutoShowing) {
-                    stopAutoShow();
-                } else {
-                    closeModal();
-                }
-            }
-        });
-
-        // Double click to toggle fullscreen
-        document.addEventListener('dblclick', (e) => {
-            // Don't trigger fullscreen when clicking on buttons or modal content
-            if (e.target.tagName === 'BUTTON' || e.target.closest('.modal-content')) {
-                return;
-            }
-
-            toggleFullscreen();
-        });
-
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().then(() => {
-                    console.log('进入全屏模式');
-                }).catch(err => {
-                    console.log('无法进入全屏模式:', err);
-                });
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen().then(() => {
-                        console.log('退出全屏模式');
-                    }).catch(err => {
-                        console.log('无法退出全屏模式:', err);
-                    });
-                }
-            }
-        }
-    </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
